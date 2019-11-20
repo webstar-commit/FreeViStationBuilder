@@ -1,0 +1,131 @@
+.mainBlock {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-image: url('/images/background.png');
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.appbar {
+  top: 0;
+  width: 100%;
+  height: 50px;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.floatingButton {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
+.logo {
+  position: absolute;
+  top: 5%;
+  width:100%;
+  height: 40%;
+  z-index: 100;
+  text-align: center;
+  display: block;
+}
+
+.title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 160%;
+  color: rgb(240, 240, 240);
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 120%;
+  margin-left: 10%;
+  color: rgb(162, 166, 175);
+  margin-right: 10%;
+}
+
+.btns {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  z-index: 100;
+  text-align: center;
+}
+.loginFacebook {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  border-style: solid;
+  color: #fff;
+  margin: auto;
+  margin-top: 5%;
+  cursor: pointer;
+  left: 50%;
+  width: 30%;
+  min-width: 200px;
+  line-height: 35px;
+  display: block;
+  font-size: 90%;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #4c69ba;
+  border-color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+}
+.loginFreevi {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  border-style: solid;
+  color: #fff;
+  cursor: pointer;
+  font-size: 90%;
+  margin: auto;
+  width: 30%;
+  min-width: 200px;
+  margin-top: 5%;
+  line-height: 35px;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #38c9ff;
+  border-color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+}
+.loginGuest {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  border-style: solid;
+  color: #fff;
+  cursor: pointer;
+  margin: auto;
+  width: 30%;
+  min-width: 200px;
+  line-height: 35px;
+  display: block;
+  margin-top: 5%;
+  font-size: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #f57c00;
+  border-color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+}

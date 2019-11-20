@@ -1,0 +1,56 @@
+/* eslint consistent-return:0 */
+
+const express = require('express');
+const logger = require('./logger');
+const path = require('path');
+
+const argv = require('minimist')(process.argv.slice(2));
+const setup = require('./middlewares/frontendMiddleware');
+const isDev = process.env.NODE_ENV !== 'production';
+const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngrok') : false;
+const resolve = require('path').resolve;
+var bodyParser = require('body-parser');
+const app = express();
+
+// If you need a backend, e.g. an API, add your custom backend-specific middleware here
+// app.use('/api', myApi);
+
+app.use('/images', express.static(path.join(__dirname, '../public','images') ));
+
+app.use(bodyParser.json({ type: 'application/*+json', limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
+/*app.use(function(req,res,next){
+  res.setHeader('Cache-Control','public max-age= 300');
+  //if it has hash in the name. disabled Etag
+  next();
+});
+*/
+console.log('1');
+// In production we need to pass these values in instead of relying on webpack
+setup(app, {
+  outputPath: resolve(process.cwd(), 'build'),
+  publicPath: '/',
+});
+console.log('2');
+// get the intended port number, use port 3000 if not provided
+const port = argv.port || process.env.PORT || 3009;
+console.log('3');
+// Start your app.
+app.listen(port, (err) => {
+  if (err) {
+    return logger.error(err.message);
+  }
+
+  // Connect to ngrok in dev mode
+  if (ngrok) {
+    ngrok.connect(port, (innerErr, url) => {
+      if (innerErr) {
+        return logger.error(innerErr);
+      }
+
+      logger.appStarted(port, url);
+    });
+  } else {
+    logger.appStarted(port);
+  }
+});

@@ -1,0 +1,82 @@
+# Don't check auto-generated stuff into git
+coverage
+node_modules
+stats.json
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/captures
+
+#built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+build/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Eclipse project files
+.classpath
+.project
+
+# Android Studio
+*.iml
+.idea
+#.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
+.gradle
+
+#NDK
+obj/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+#cordova
+# Mac
+.DS_Store
+
+
+# android
+android_native_app/platforms/android/assets/www
+android_native_app/platforms/android/bin
+android_native_app/platforms/android/gen
+android_native_app/platforms/android/local.properties
+android_native_app/platforms/android/ant-build
+android_native_app/platforms/android/ant-gen
+android_native_app/platforms/android/CordovaLib/ant-build
+android_native_app/platforms/android/CordovaLib/ant-gen
+android_native_app/platforms/android/CordovaLib/bin
+android_native_app/platforms/android/CordovaLib/gen
+android_native_app/platforms/android/CordovaLib/local.properties
+
+
+android_native_app/platforms/android/cordova/log
+
+android_native_app/platforms/android/CordovaLib/
+
+android_native_app/platforms/android/cordova/

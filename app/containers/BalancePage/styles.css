@@ -1,0 +1,252 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.appbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50px;
+}
+.mainBlock {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: calc(90% - 45px);
+  margin: 0 auto;
+}
+.button{
+  position: absolute;
+  top: 80%;
+  left: 20%;
+}
+.moreItem{
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+
+}
+.type{
+  cursor: pointer;
+  cursor: hand;
+  text-decoration: underline;
+}
+.addMoney {
+  margin:0 auto;
+  position: relative;
+  width: 100%;
+}
+.btnGrp{
+  margin: 0 auto;
+  position: relative;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow-x: hidden;
+}
+.appbar {
+  top: 0;
+  width: 100%;
+  height: 50px;
+}
+.grid {
+  cursor: pointer;
+  cursor: hand;
+  width: 100%;
+  height: 100%;
+  z-index:100;
+}
+.Product{
+  border-style: none;
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+.button{
+  position: relative;
+  left: 60%;
+}
+.link{
+  cursor: pointer;
+  cursor: hand;
+}
+.ViTokens {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 1%;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0.5;
+  background-color: rgba(0,0,0,.45);
+  transition: opacity .75s ease-in-out;
+  -moz-transition: opacity .75s ease-in-out;
+  -webkit-transition: opacity .75s ease-in-out;
+  z-index: 1000;
+}
+.ViTokens:hover {
+  opacity: 1;
+}
+
+@media only screen and (min-device-width: 1200px) {
+  .mainBlock {
+    position: flex;
+    width: 100%;
+    height:90%;
+  }
+  .photos{
+    position: absolute;
+    top:50px;
+    width: 50%;
+    height: 90%;
+  }
+  .productTitle {
+    top:10%;
+    left: 60%;
+    position: relative;
+    padding: 10px 2.5%;
+    overflow: hidden;
+    font-size: 1.25em;
+    font-style: normal;
+  }
+  .productH1 {
+    display: block;
+    position: relative;
+    padding-right: 20px;
+    line-height: 1.3;
+    font-size: 60px;
+    max-height: 1000px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+  }
+  .buySection {
+    position: absolute;
+    top: 65%;
+    width: 40%;
+    left: 60%;
+    padding: 10px 2.5% 0 2.5%;
+  }
+  .buyItem{
+    min-width: 195px;
+    padding-top: 10px;
+    padding-bottom: 9px;
+    text-transform: uppercase;
+    width:50%;
+    border-color: #B35A00;
+    background-color: #f78c1b;
+    background: linear-gradient(to bottom,#FEB13A,#f78c1b);
+    color: #552F00;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 2;
+    letter-spacing: 1px;
+  }
+  .productInfo{
+    padding: 0;
+    top:35%;
+    position: absolute;
+    left: 65%;
+    min-height: 37px;
+  }
+  .productInfoUL{
+    list-style: none;
+    width: 800px;
+  }
+  .productLi{
+    padding: 0 2.5%;
+    font-size: 40px;
+    min-height: 100px;
+    width: 100%;
+    border-bottom: 1px solid #d9d9d9!important;
+  }
+  .productSeller {
+    min-height: 100px;
+    margin-top: 40px;
+    padding: 0 2.5%;
+    font-size: 50px;
+    border-bottom: 1px solid #d9d9d9!important;
+  }
+  .productDescription{
+    min-height: 44px;
+    padding: 0 2.5%;
+    border-bottom: 1px solid #d9d9d9!important;
+  }
+  .packages{
+    width: 60%;
+    height: 100%;
+    margin-left: 20%;
+    display: flex;
+    margin: 0 auto;
+  }
+  .Starter {
+    background-color: #FDF3D9;
+  }
+  .premium {
+    position: relative;
+    margin-left: 20%;
+    background-color:rgba(147,81,166,0.2);
+  }
+  .buyPackage{
+    margin-left: 10%;
+    padding-bottom: 9px;
+    background: linear-gradient(to bottom,#FEB13A,#f78c1b);
+    color: #552F00;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+  .addTokens {
+    height: 1000px;
+    width: 80%;
+  }
+}
+@media only screen and (min-device-width: 300px )and (max-device-width: 1200px) {
+
+  .mainBlock {
+    position: absolute;
+    width: 100%;
+    height:100%;
+  }
+  .packages{
+    display: flex;
+  }
+  .Starter {
+    background-color: #FDF3D9;
+  }
+  .premium {
+    margin-left: 5px;
+    background-color:rgba(147,81,166,0.2);
+  }
+  .addTokens {
+    height: 80%;
+    width: 80%;
+  }
+  .buyPackage{
+    margin-left: 10%;
+    padding-bottom: 9px;
+    background: linear-gradient(to bottom,#FEB13A,#f78c1b);
+    color: #552F00;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+}

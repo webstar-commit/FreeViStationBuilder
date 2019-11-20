@@ -1,0 +1,22 @@
+.enterToggleButton {
+  min-width: 2em !important;
+  box-sizing: border-box;
+  height: 100% !important;
+  z-index: 2147483647;
+}
+
+.exitToggleButton {
+  position: absolute;
+  min-width: 2em !important;
+  box-sizing: border-box;
+  z-index: 2147483647;
+  height: 100% !important;
+}
+
+.block {
+  max-width: 250;
+}
+
+.toggle {
+  margin-bottom: 0;
+}

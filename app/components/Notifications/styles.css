@@ -1,0 +1,18 @@
+.link{
+	text-align: center;
+	cursor: pointer;
+	cursor: hand;
+}
+.badge{
+	padding: 0px;
+}
+.read{
+	margin-bottom: 5px;
+	cursor: pointer;
+	cursor: hand;
+}
+.unread{
+	cursor: pointer;
+	cursor: hand;
+	margin-bottom: 5px;
+}

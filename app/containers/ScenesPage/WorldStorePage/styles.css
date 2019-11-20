@@ -1,0 +1,34 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.mainBlock {
+  position: relative;
+  top:0px;
+  width: 100%;
+  z-index: 1;
+  flex: 1 1 auto;
+}
+
+.appbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 10;
+}
+
+.floatingButton {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  z-index: 15;
+}
+.view{
+  color:white;
+  cursor: pointer;
+}

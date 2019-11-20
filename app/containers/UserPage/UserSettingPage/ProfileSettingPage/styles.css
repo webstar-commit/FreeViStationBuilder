@@ -1,0 +1,36 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.appbar {
+  top: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 10;
+}
+.mainBlock {
+  position: absolute;
+  width: 90%;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.leftBlock {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+.rightBlock {
+  position: relative;
+  float:right;
+  width: 50%;
+}
+.button{
+  position: relative;
+  margin-top: 10%;
+  margin-left: 50%;
+}

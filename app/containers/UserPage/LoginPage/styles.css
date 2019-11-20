@@ -1,0 +1,54 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.appbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50px;
+}
+.mainBlock {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.signUp{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+  margin-top: 20px;
+  font-size: 15px;
+}
+.textField1{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+}
+.textField2{
+  position: relative;
+  top: 40%;
+  width: 80%;
+  margin-left: 20%;
+}
+.resetPass{
+  position: relative;
+  width: 80%;
+  margin-left: 20%;
+  margin-top: 20px;
+  font-size: 15px;
+}
+.button{
+  position: relative;
+  margin-left: 40%;
+}
+.link{
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+}

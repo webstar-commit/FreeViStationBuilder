@@ -1,0 +1,339 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import TextField from 'material-ui/TextField';
+import UIAppBar from 'components/UIAppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationBack from 'material-ui/svg-icons/navigation/arrow-back';
+import cookie from 'react-cookie';
+import styles from './styles.css';
+import Divider from 'material-ui/Divider';
+import RaisedButton from 'material-ui/RaisedButton';
+import Checkbox from 'material-ui/Checkbox';
+
+require('public/leaflet.css');
+
+require('../../WorldViewPage/js/lib/wrld');
+require('../../WorldViewPage/js/lib/jquery.min');
+
+function navigationBackButton(func) {
+  return (
+    <IconButton onClick={func} >
+      <NavigationBack />
+    </IconButton>
+  );
+};
+
+export class newScene extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name:'',
+      access:'Gallery',
+      nameError:'',
+      btnDisabled:false,
+    };
+    this.map      = null;
+    this.geoMarker = null;
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillUnmount() {
+    var self = this;
+    if (self.geoMarker != undefined) {
+      self.geoMarker.remove();
+      self.map.off('update', this.updatePopup);
+      self.map.off('moveend', this.setPopupContent);
+    }
+  };
+
+  openRoute = (route) => {
+    this.props.changeRoute(route);
+  };
+
+  openEditorPage = () => {
+    this.openRoute('/editor');
+  };
+
+  openUserPage = () => {
+  	var json = cookie.load('user');
+  	this.openRoute('/user/'+json.user.username);
+  }
+
+  openTemplates = () =>{
+    this.openRoute('/templates');
+  }
+
+  handleNameChange(event){
+    if(this.state.nameError !== ''){
+      this.setState({nameError:'',name:event.target.value});
+      return;
+    }
+    this.setState({name:event.target.value});
+  }
+
+  setPopupContent = () =>
+  {
+    var self = this;
+    var zoom = self.map.getZoom();
+    var center = self.map.getCenter();
+    var lat = center.lat.toFixed(3);
+    var lng = center.lng.toFixed(3);
+    self.geoMarker.bindPopup("LatLng: " + lat + ", " + lng + "<br/>" + "Zoom: " + zoom).openPopup().openPopup();
+  }
+  updatePopup = () =>
+  {
+    var self = this;
+    if (self.geoMarker != undefined)
+      self.geoMarker.setLatLng(self.map.getCenter());
+  }
+
+  handleSubmit(event) {
+    var self = this;
+  	var json = cookie.load('user');
+    this.setState({btnDisabled:true})
+    var name = this.refs.sceneName.getValue();
+    var access = this.state.access;
+    var description = this.refs.description.getValue();
+    if (description) name = description;
+    const { sceneId } = self.props.params;
+    // const { sceneId } = this.props.params;
+    // fetch('/stations/new', {
+    //   method:'POST',
+    //   mode: 'cors',
+    //   headers:{
+    //     'Authorization':'Basic',
+    //     'Content-Type':'application/x-www-form-urlencoded',
+    //   },
+    //   body:'name='+name+'&visibility='+access+'&description='+description+'&sceneId='+sceneId
+    // }).then(function(response){
+    //   response.json().then(function(json){
+    //     if(json._id)self.openRoute('/station/'+json._id+'/builder');
+    //   });
+    // });
+    if(document.getElementById('selectLoc').checked) {
+      var position = null;
+      if (self.geoMarker != undefined)
+      {
+        position = self.geoMarker.getLatLng();
+      }
+      else
+      {
+        position = {lat :-34.397, lng:150.644}
+      }
+      fetch('/stations/new', {
+        method:'POST',
+        mode: 'cors',
+        headers:{
+          'Authorization':'Basic',
+          'Content-Type':'application/x-www-form-urlencoded',
+        },
+        body:'name='+name+'&visibility='+access+'&description='+description+'&sceneId='+sceneId+'&latitude='+position.lat+'&longitude='+position.lng
+      }).then(function(response){
+        response.json().then(function(json){
+          if(json._id)self.openRoute('/station/'+json._id);
+        });
+      });
+    }
+    else {
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+          var geo = position ? position.coords : {latitude:-34.397, longitude:150.644};
+
+          fetch('/stations/new', {
+            method:'POST',
+            mode: 'cors',
+            headers:{
+              'Authorization':'Basic',
+              'Content-Type':'application/x-www-form-urlencoded',
+            },
+            body:'name='+name+'&visibility='+access+'&description='+description+'&sceneId='+sceneId+'&latitude='+geo.latitude+'&longitude='+geo.longitude
+          }).then(function(response){
+            response.json().then(function(json){
+              if(json._id)self.openRoute('/station/'+json._id);
+            });
+          });
+      }, function() {
+        jQuery.getJSON("https://freegeoip.net/json/", function (position)
+        {
+          var geo = position ? position : {latitude:-34.397, longitude:150.644};
+
+          fetch('/stations/new', {
+            method:'POST',
+            mode: 'cors',
+            headers:{
+              'Authorization':'Basic',
+              'Content-Type':'application/x-www-form-urlencoded',
+            },
+            body:'name='+name+'&visibility='+access+'&description='+description+'&sceneId='+sceneId+'&latitude='+geo.latitude+'&longitude='+geo.longitude
+          }).then(function(response){
+            response.json().then(function(json){
+              if(json._id)self.openRoute('/station/'+json._id);
+            });
+          });
+        }, function()
+        {
+            console.log('getposition error');
+        });
+      });
+   }
+	}
+
+  handleCheck = (event) => {
+    // here's your checked Value
+    if(event.target.checked ) {
+      document.getElementById('mapPicker').style.display = 'block';
+      document.getElementById('mapPicker').style.height = '300px';
+      var self = this;
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+
+        var geo = position ? position.coords : {latitude:-34.397, longitude:150.644};
+
+        var container = L.Wrld.getMapById(0);
+        if (container != undefined && container.mapContainer != undefined && self.map == undefined)
+        {
+          document.getElementById("mapPicker").appendChild(container.mapContainer.mapContainer);
+          self.map = container.leafletMap;
+
+          self.map.setView([geo.latitude, geo.longitude]);
+          self.map.setZoom(15);
+        }
+        else {
+          if (self.map == undefined){
+            self.map = L.Wrld.map("mapPicker", "efa27b86ca40c4d3babe71bc4d9b9e9f",
+            {
+                center: [geo.latitude, geo.longitude],
+                zoom: 15
+            });
+          }
+        }
+        if (self.geoMarker == undefined)
+        {
+          self.geoMarker = L.Wrld.marker(self.map.getCenter()).addTo(self.map);
+          self.geoMarker.bindPopup("").openPopup();
+        }
+
+        self.setPopupContent()
+        self.map.on('update', self.updatePopup);
+        self.map.on('moveend', self.setPopupContent);
+
+      }, function() {
+        jQuery.getJSON("https://freegeoip.net/json/", function (position)
+        {
+          var geo = position ? position : {latitude:-34.397, longitude:150.644};
+
+          var container = L.Wrld.getMapById(0);
+          if (container != undefined && container.mapContainer != undefined && self.map == undefined)
+          {
+            document.getElementById("mapPicker").appendChild(container.mapContainer.mapContainer);
+            self.map = container.leafletMap;
+
+            self.map.setView([geo.latitude, geo.longitude]);
+            self.map.setZoom(15);
+          }
+          else {
+            if (self.map == undefined){
+              self.map = L.Wrld.map("mapPicker", "efa27b86ca40c4d3babe71bc4d9b9e9f",
+              {
+                  center: [geo.latitude, geo.longitude],
+                  zoom: 15
+              });
+            }
+          }
+          if (self.geoMarker == undefined)
+          {
+            self.geoMarker = L.Wrld.marker(self.map.getCenter()).addTo(self.map);
+            self.geoMarker.bindPopup("").openPopup();
+          }
+
+          self.setPopupContent()
+          self.map.on('update', self.updatePopup);
+          self.map.on('moveend', self.setPopupContent);
+        }, function()
+        {
+            console.log('getposition error');
+        });
+      });
+    }
+    else {
+      document.getElementById('mapPicker').style.display = 'none';
+    }
+  }
+
+  render() {
+
+  	var userCookie = cookie.load('user');
+  	if(typeof userCookie === 'undefined') {
+  		this.openRoute('/');
+      return;
+  	}
+    var stationtName;
+    if (typeof userCookie.user.name !== 'undefined') {
+      stationtName = userCookie.user.name.split(' ')[0];
+    }
+    else stationtName = userCookie.user.username;
+    stationtName += "'s Station";
+    return (
+      <div className={styles.container}>
+        <div className={styles.appbar}>
+          <UIAppBar titleText="Station Settings"  leftIcon={navigationBackButton(this.openTemplates)} />
+        </div>
+        <div className={styles.mainBlock}>
+          <div className={styles.title}>
+            <h2>New Station</h2>
+          </div>
+          <Divider />
+          <div className={styles.textField1}>
+            <TextField
+              ref='sceneName'
+              floatingLabelText="Station Name"
+              underlineShow={true}
+              errorText={this.state.nameError}
+              onChange={this.handleNameChange}
+              defaultValue={stationtName}
+              floatingLabelStyle={{fontSize:20,fontWeight:'bold'}}
+            />
+          </div>
+          <div className={styles.textField2}>
+            <TextField
+              ref='description'
+              floatingLabelText="Station description"
+              underlineShow={true}
+              multiLine={true}
+              floatingLabelStyle={{fontSize:20,fontWeight:'bold'}}
+            />
+          </div>
+          <div className={styles.Checkbox}>
+            <Checkbox id="selectLoc"
+              label="Select Location"
+              defaultChecked={false}
+              onCheck={this.handleCheck}
+            />
+          </div>
+          <div className={styles.map}>
+            <div id="mapPicker"></div>
+          </div>
+   		    <Divider style={{marginTop:30,marginBottom:30}}/>
+   		    <div className={styles.floatingButton} >
+   		 	    <RaisedButton label='Create'primary={true} disabled={this.state.btnDisabled} onTouchTap={this.handleSubmit} />
+   		    </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+newScene.propTypes = {
+  changeRoute: React.PropTypes.func,
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    changeRoute: (url) => dispatch(push(url)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(newScene);
+

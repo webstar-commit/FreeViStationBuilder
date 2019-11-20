@@ -1,0 +1,55 @@
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.appbar {
+  width: 100%;
+  height: 50px;
+}
+.mainBlock {
+  position: absolute;
+  width: 80%;
+  height: calc(90% - 45px);
+  margin-left: 10%;
+}
+.title {
+  position: relative;
+  display: inline-block;
+}
+.notifications {
+  position: relative;
+  margin-top: 10px;
+  display: inline-block;
+}
+.button{
+  position: absolute;
+  top: 80%;
+  left: 20%;
+}
+.link{
+  text-align: center;
+  cursor: pointer;
+  cursor: hand;
+}
+.badge{
+  padding: 0px;
+}
+.read{
+  margin-bottom: 5px;
+  cursor: pointer;
+  cursor: hand;
+}
+.unread{
+  cursor: pointer;
+  cursor: hand;
+  margin-bottom: 5px;
+  background-color:#b9b9b9;
+}
+.moreItem{
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+
+}

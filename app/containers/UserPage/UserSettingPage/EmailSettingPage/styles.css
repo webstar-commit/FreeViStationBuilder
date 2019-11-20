@@ -1,0 +1,136 @@
+.container {
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.appbar {
+  margin-left: 0%;
+  width: 12   0%;
+  height: 50px;
+}
+.title {
+  position: relative;
+  display: inline-block;
+  left: 10%;
+}
+.email{
+  position: relative;
+  left:10%;
+  display: inline-block;
+}
+.Verifyed {
+  position: relative;
+  margin-top: 20px;
+
+}
+.btns{
+  position: relative;
+  float: right;
+}
+.unVerifyed {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+}
+.newEmail{
+  position: relative;
+  left: 10%;
+  margin-top: 20px;
+}
+.verifyButton{
+  position: relative;
+  margin-left: 20px;
+}
+.addButton{
+  position: relative;
+  margin-left: 20px;
+}
+.notification{
+  position: relative;
+  left: 10%;
+  margin-top: 20px;
+}
+.deleteButton{
+  position: relative;
+  margin:12;
+  font-size:10;
+  margin-left: 20px;
+}
+.saveBtn{
+  position: relative;
+  float: right;
+  margin-top: 80px;
+}
+@media only screen and (max-device-width: 480px) {
+  .container {
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.appbar {
+  margin-left: 0%;
+  width: 12   0%;
+  height: 50px;
+}
+.title {
+  position: relative;
+  display: inline-block;
+  left: 10%;
+}
+.email{
+  position: relative;
+  left:10%;
+  display: inline-block;
+}
+.btns{
+  position: relative;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+.Verifyed {
+  position: relative;
+  margin-top: 20px;
+
+}
+.unVerifyed {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  display: inline-block;
+}
+.newEmail{
+  position: relative;
+  left: 10%;
+  margin-top: 20px;
+}
+.verifyButton{
+  position: relative;
+  margin-left: 40px;
+}
+.addButton{
+  position: relative;
+  float: right;
+  margin-right:60px;
+}
+.deleteButton{
+  position: relative;
+  font-size:10;
+  margin-left: 20px;
+}
+.notification{
+  position: relative;
+  left: 10%;
+  margin-top: 20px;
+}
+.saveBtn{
+  position: relative;
+  float: right;
+}
+}
